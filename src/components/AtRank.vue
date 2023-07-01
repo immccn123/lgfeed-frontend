@@ -1,7 +1,15 @@
 <script setup>
 import { ref } from 'vue'
 import { api } from '../utils'
-import { NAvatar, NButton, NList, NListItem, NSpace } from 'naive-ui';
+import {
+  NAvatar,
+  NButton,
+  NList,
+  NListItem,
+  NSpace,
+  NStatistic,
+  NNumberAnimation,
+} from 'naive-ui'
 
 var lastUpdate = ref('Loading...')
 var pingOthersList = []
@@ -35,7 +43,10 @@ api.get('/rank/pingOthers')
         </NSpace>
       </RouterLink>
       <template #suffix>
-        {{ pingOthers.count }}
+        <NStatistic tabular-nums>
+          <NNumberAnimation duration="4000" v-if="i < 10" :from="0" :to="pingOthers.count" />
+          <span v-else>{{ pingOthers.count }}</span>
+        </NStatistic>
       </template>
     </NListItem>
   </NList>

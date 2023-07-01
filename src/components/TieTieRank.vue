@@ -1,7 +1,15 @@
 <script setup>
 import { ref } from 'vue'
 import { api } from '../utils'
-import { NAvatar, NButton, NList, NListItem, NSpace } from 'naive-ui';
+import {
+  NAvatar,
+  NButton,
+  NList,
+  NListItem,
+  NSpace,
+  NStatistic,
+  NNumberAnimation,
+} from 'naive-ui'
 
 var lastUpdate = ref('Loading...')
 var tietieList = []
@@ -35,7 +43,10 @@ api.get('/rank/tietie')
         </NSpace>
       </RouterLink>
       <template #suffix>
-        {{ tietie.count }}
+        <NStatistic tabular-nums>
+          <span v-if="i < 10" style="color: rgb(255, 141, 160);"><NNumberAnimation duration="4000" :from="0" :to="tietie.count" /></span>
+          <span v-else>{{ tietie.count }}</span>
+        </NStatistic>
       </template>
     </NListItem>
   </NList>

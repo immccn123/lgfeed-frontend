@@ -1,10 +1,31 @@
 <script setup>
 import { ref } from 'vue'
 import { api } from '../utils'
-import { NAvatar, NButton, NList, NListItem, NSpace } from 'naive-ui';
+import {
+  NAvatar,
+  NButton,
+  NList,
+  NListItem,
+  NSpace,
+  NStatistic,
+  NNumberAnimation,
+} from 'naive-ui'
 
 var lastUpdate = ref('Loading...')
 var dragonList = []
+
+const colorList = [
+  'gold',
+  '#bfa100',
+  '#7d7d00',
+  '#cf0000',
+  '#af0000',
+  '#a50000',
+  '#aa0000',
+  '#990000',
+  '#550000',
+  'black',
+]
 
 api.get('/rank/dragon')
   .then((response) => {
@@ -16,7 +37,7 @@ api.get('/rank/dragon')
 </script>
 
 <template>
-  <NList bordered hoverable clickable style="min-width: 500px;">
+  <NList bordered hoverable clickable style="min-width: 600px;">
     <template #header>
       <h2>30 日犇犇龙王榜</h2>
     </template>
@@ -35,7 +56,12 @@ api.get('/rank/dragon')
         </NSpace>
       </RouterLink>
       <template #suffix>
-        {{ dragon.count }}
+        <NStatistic tabular-nums>
+          <span v-if="i < 10" :style="{ 'color': colorList[i] }">
+            <NNumberAnimation duration="4000" v-if="i < 10" :from="0" :to="dragon.count" />
+          </span>
+          <span v-else>{{ dragon.count }}</span>
+        </NStatistic>
       </template>
     </NListItem>
   </NList>
