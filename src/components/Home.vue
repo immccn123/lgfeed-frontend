@@ -16,7 +16,7 @@ import { NCode, NH3, NText } from 'naive-ui';
         本犇犇保存站的数据从洛谷全网犇犇爬取，并在其基础上进行处理，承诺中途不进行任何改动。如遇数据错误，请自行到原网站查看原始消息并自行判断真假，我们不对数据真实性和完整性做任何保证。
       </NText>
     </p>
-    <p style="max-width: 500px;">本站是由 Imken 和 Rickyxyc 自主研发的一款全新<del>开放世界</del>犇犇保存站！由于后端服务器在大陆之外，部分地区访问有困难或卡顿，敬请谅解 qwq
+    <p style="max-width: 500px;">本站是由 Imken 和 Rickyxrc 自主研发的一款全新<del>开放世界</del>犇犇保存站！由于后端服务器在大陆之外，部分地区访问有困难或卡顿，敬请谅解 qwq
     </p>
     <p>因为代码太丑了（而且 commit history 里有敏感信息），所以短时间内不会开放源代码 qwq</p>
     <p>有 bug 请直接联系 me[at]imken.moe ，谢谢！</p>
