@@ -9,7 +9,7 @@ const routes = [
   { path: '/tietieKing', component: () => import('./components/TieTieRank.vue'), name: '贴贴榜' },
   { path: '/bellKing', component: () => import('./components/BellRank.vue'), name: '铃铛榜' },
   { path: '/atKing', component: () => import('./components/AtRank.vue'), name: '艾特榜' },
-  // { path: '/historyFeed/:uid', component: () => import('./components/HistFeed.vue'), name: '历史犇犇' },
+  { path: '/historyFeed/:uid(\\d+)?', component: () => import('./components/HistFeed.vue'), name: '历史犇犇' },
 ]
 
 

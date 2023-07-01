@@ -69,16 +69,16 @@ const menuOptions = [
     ),
     key: "at-king",
   },
-  // {
-  //   label: () => h(
-  //     RouterLink,
-  //     {
-  //       to: '/historyFeed'
-  //     },
-  //     { default: () => '历史犇犇查询' }
-  //   ),
-  //   key: "histfeed",
-  // },
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: '/historyFeed'
+      },
+      { default: () => '历史犇犇查询' }
+    ),
+    key: "histfeed",
+  },
 ];
 
 export default defineComponent({
