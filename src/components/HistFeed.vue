@@ -16,6 +16,8 @@ const show = ref({})
 var isQueried = ref(false), isLoading = ref(false)
 const page = ref(1)
 const uid = ref(route.params.uid)
+const inputUid = ref(route.params.uid)
+const replaceR = /@\[(\S[^\[\]]+)\]\(\/user\/(\d+)\)/g
 
 const query = () => {
   show.value = {}
@@ -31,6 +33,7 @@ const query = () => {
 }
 
 const redirect = () => {
+  uid.value = inputUid.value
   router.push('/historyFeed/' + uid.value)
   page.value = 1
   query()
@@ -42,13 +45,14 @@ if (uid.value != '') {
   console.log('empty')
   query()
 }
+
 </script>
 
 <template>
   <h2>历史犇犇查询</h2>
   <a v-if="isQueried" :href="'https://www.luogu.com.cn/user/' + uid">前往洛谷个人主页</a>
   <NInputGroup>
-    <NInput type="text" :allow-input="onlyAllowNumber" placeholder="UID" v-model:value="uid" :loading="isLoading">
+    <NInput type="text" :allow-input="onlyAllowNumber" placeholder="UID" v-model:value="inputUid" :loading="isLoading">
     </NInput>
     <NButton type="primary" :onclick="redirect" :disabled="isLoading">Go</NButton>
   </NInputGroup>
@@ -69,7 +73,7 @@ if (uid.value != '') {
         <template #header-extra>
           <NButton :on-click="() => { show[i] = !show[i] }">{{ show[i] ? '收起' : '展示' }}源码</NButton>
         </template>
-        <div v-html="md.render(feed.content)" class="feed-content"></div>
+        <div v-html="md.render(feed.content.replaceAll(replaceR, '@[$1#$2](/historyFeed/$2)'))" class="feed-content"></div>
         <div :hidden="!show[i]" style="overflow-x: scroll; max-width: 500px;">
           <NText type="info">
             <pre>{{ feed.content }}</pre>
