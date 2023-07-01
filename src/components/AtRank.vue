@@ -27,13 +27,13 @@ api.get('/rank/pingOthers')
       <template #prefix>
         #{{ i + 1 }}
       </template>
-      <a style="display: block;" :href="'https://www.luogu.com.cn/user/' + pingOthers.uid">
+      <RouterLink style="display: block;" :to="'/historyFeed/' + pingOthers.uid">
         <NSpace style="display: flex; align-items: center;">
           <NAvatar style="display: inline-block;" round size="small"
             :src="'https://cdn.luogu.com.cn/upload/usericon/' + pingOthers.uid + '.png'" />
           <NButton text>{{ pingOthers.name }}</NButton>
         </NSpace>
-      </a>
+      </RouterLink>
       <template #suffix>
         {{ pingOthers.count }}
       </template>

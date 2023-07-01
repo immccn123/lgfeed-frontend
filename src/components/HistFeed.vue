@@ -50,7 +50,7 @@ if (uid.value != '') {
 
 <template>
   <h2>历史犇犇查询</h2>
-  <a v-if="isQueried" :href="'https://www.luogu.com.cn/user/' + uid">前往洛谷个人主页</a>
+  <a v-if="uid != ''" target="_blank" :href="'https://www.luogu.com.cn/user/' + uid">前往洛谷个人主页</a>
   <NInputGroup>
     <NInput type="text" :allow-input="onlyAllowNumber" placeholder="UID" v-model:value="inputUid" :loading="isLoading">
     </NInput>

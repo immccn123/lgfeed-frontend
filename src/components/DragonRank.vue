@@ -27,13 +27,13 @@ api.get('/rank/dragon')
       <template #prefix>
         #{{ i + 1 }}
       </template>
-      <a style="display: block;" :href="'https://www.luogu.com.cn/user/' + dragon.uid">
+      <RouterLink style="display: block;" :to="'/historyFeed/' + dragon.uid">
         <NSpace style="display: flex; align-items: center;">
           <NAvatar style="display: inline-block;" round size="small"
             :src="'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'" />
           <NButton text>{{ dragon.name }}</NButton>
         </NSpace>
-      </a>
+      </RouterLink>
       <template #suffix>
         {{ dragon.count }}
       </template>
