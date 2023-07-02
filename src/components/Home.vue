@@ -1,11 +1,64 @@
 <script setup>
-import { NCode, NH3, NText } from 'naive-ui';
+import { ref } from 'vue';
+import { NCode, NH3, NNumberAnimation, NSkeleton, NStatistic, NText, NA, NGi, NGrid } from 'naive-ui';
+import { api } from '../utils'
 
+const today_message = ref(0)
+const total = ref(0)
+const total_user = ref(0)
+const today_user = ref(0)
+const loading = ref(true)
+
+api.get('/statistics').then((response) => {
+  const data = response.data
+  today_message.value = data.content.today
+  today_user.value = data.content.today_user
+  total.value = data.content.total
+  total_user.value = data.content.total_user
+  loading.value = false
+})
 
 </script>
 
 <template>
-  <div style="max-width: 500px;">
+  <div style="max-width: 560px; padding: 5%;">
+    <NH3 prefix="bar" type="info">
+      <NText type="info">
+        <b>统计信息</b>
+      </NText>
+    </NH3>
+    <p>
+      <NGrid :cols="2">
+        <NGi>
+          <NStatistic label="Imken 的服务器娘一共处理了…">
+            <NSkeleton size="medium" v-if="loading" />
+            <NNumberAnimation v-if="!loading" :to="total" />
+            <template #suffix v-if="!loading">
+              条犇犇！
+            </template>
+          </NStatistic>
+        </NGi>
+        <NGi>
+          <NStatistic label="Imken 的服务器娘在 24h 内处理了…">
+            <NSkeleton size="medium" v-if="loading" />
+            <NNumberAnimation v-if="!loading" :to="today_message" />
+            <template #suffix v-if="!loading">
+              条犇犇！
+            </template>
+          </NStatistic>
+        </NGi>
+      </NGrid>
+      <NSkeleton v-if="loading" text />
+      <span v-if="!loading">其中，24h 内有
+        <NNumberAnimation v-if="!loading" :to="today_user" /> 个用户发了犇犇，历史上有
+        <NNumberAnimation v-if="!loading" :to="total_user" /> 个用户发了犇犇。厉害吧！
+      </span><br>
+      <NText type="info">
+        本站运营成本较高，如果可以的话，你可以考虑<b>
+          <NA href="https://sponsor.imken.moe">捐赠</NA>
+        </b>来支持我们的开发，谢谢啦～
+      </NText>
+    </p>
     <NH3 prefix="bar" type="error">
       <NText type="error">
         <b>免责声明</b>
@@ -26,11 +79,6 @@ import { NCode, NH3, NText } from 'naive-ui';
     <p>因为代码太丑了（而且 commit history 里有敏感信息），所以短时间内不会开放源代码 qwq</p>
     <p>有 bug 请直接联系 me[at]imken.moe ，谢谢！</p>
     <p>
-      <NText type="info">
-        本站运营成本较高，如果可能，您可以考虑<b><a href="https://sponsor.imken.moe">捐赠</a></b>来支持我们的开发，感激不尽！
-      </NText>
-    </p>
-    <p>
       本站已在随时准备跑路的状态下以极其不稳定的方式运行了 {{ ((new Date() - new Date("2023/07/01 13:05")) / (1000 * 60 * 60 * 24)).toFixed() }} 天
       <br>
       <NCode>Frontend & Backend by <a href="https://imken.moe/"><span style="color: rgb(255, 145, 163);">Imken
@@ -42,3 +90,9 @@ import { NCode, NH3, NText } from 'naive-ui';
     </p>
   </div>
 </template>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>
