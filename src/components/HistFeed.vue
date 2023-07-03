@@ -109,4 +109,5 @@ if (uid.value != '') {
 #lghome:focus {
   color: rgb(28, 80, 80);
   transition: .1s;
-}</style>
+}
+</style>
