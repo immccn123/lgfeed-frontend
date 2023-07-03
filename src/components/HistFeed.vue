@@ -45,12 +45,11 @@ if (uid.value != '') {
   console.log('empty')
   query()
 }
-
 </script>
 
 <template>
   <h2>历史犇犇查询</h2>
-  <a v-if="uid != ''" target="_blank" :href="'https://www.luogu.com.cn/user/' + uid">前往洛谷个人主页</a>
+  <a id="lghome" v-if="uid != ''" target="_blank" :href="'https://www.luogu.com.cn/user/' + uid">前往洛谷个人主页</a>
   <NInputGroup>
     <NInput type="text" :allow-input="onlyAllowNumber" placeholder="UID" v-model:value="inputUid" :loading="isLoading">
     </NInput>
@@ -73,7 +72,8 @@ if (uid.value != '') {
         <template #header-extra>
           <NButton :on-click="() => { show[i] = !show[i] }">{{ show[i] ? '收起' : '展示' }}源码</NButton>
         </template>
-        <div v-html="md.render(feed.content.replaceAll(replaceR, '@[$1#$2](/historyFeed/$2)'))" class="feed-content"></div>
+        <div v-html="md.render(feed.content.replaceAll(replaceR, '@[$1#$2](/historyFeed/$2)'))" class="feed-content">
+        </div>
         <div :hidden="!show[i]" style="overflow-x: scroll; max-width: 500px;">
           <NText type="info">
             <pre>{{ feed.content }}</pre>
@@ -91,4 +91,22 @@ if (uid.value != '') {
 .feed-content img {
   max-width: 80%;
 }
-</style>
+
+.feed-content * a,
+#lghome {
+  color: rgb(63, 181, 181);
+  text-decoration: none;
+  transition: .1s;
+}
+
+.feed-content * a:hover,
+#lghome:hover {
+  color: rgb(41, 117, 117);
+  transition: .1s;
+}
+
+.feed-content * a:focus,
+#lghome:focus {
+  color: rgb(28, 80, 80);
+  transition: .1s;
+}</style>
