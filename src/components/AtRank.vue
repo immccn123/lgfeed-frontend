@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { api } from '../utils'
+import { ref } from 'vue';
+import { api } from '../utils';
 import {
   NAvatar,
   NButton,
@@ -9,17 +9,17 @@ import {
   NSpace,
   NStatistic,
   NNumberAnimation,
-} from 'naive-ui'
+} from 'naive-ui';
 
-var lastUpdate = ref('Loading...')
-var pingOthersList = []
+var lastUpdate = ref('Loading...');
+var pingOthersList = [];
 
 api.get('/rank/pingOthers')
   .then((response) => {
-    let data = response.data
-    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString()
-    pingOthersList = data.content
-  })
+    const {data} = response;
+    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
+    pingOthersList = data.content;
+  });
 
 </script>
 
@@ -31,7 +31,7 @@ api.get('/rank/pingOthers')
     <template #footer>
       上次更新：{{ lastUpdate }}
     </template>
-    <NListItem v-for="pingOthers, i in pingOthersList">
+    <NListItem v-for="pingOthers, i in pingOthersList" :key="i">
       <template #prefix>
         #{{ i + 1 }}
       </template>

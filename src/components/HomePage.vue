@@ -1,22 +1,22 @@
 <script setup>
 import { ref } from 'vue';
 import { NCode, NH3, NNumberAnimation, NSkeleton, NStatistic, NText, NA, NGi, NGrid } from 'naive-ui';
-import { api } from '../utils'
+import { api } from '../utils';
 
-const today_message = ref(0)
-const total = ref(0)
-const total_user = ref(0)
-const today_user = ref(0)
-const loading = ref(true)
+const todayMessage = ref(0);
+const total = ref(0);
+const totalUser = ref(0);
+const todayUser = ref(0);
+const loading = ref(true);
 
 api.get('/statistics').then((response) => {
-  const data = response.data
-  today_message.value = data.content.today
-  today_user.value = data.content.today_user
-  total.value = data.content.total
-  total_user.value = data.content.total_user
-  loading.value = false
-})
+  const {data} = response;
+  todayMessage.value = data.content.today;
+  todayUser.value = data.content.todayUser;
+  total.value = data.content.total;
+  totalUser.value = data.content.totalUser;
+  loading.value = false;
+});
 
 </script>
 
@@ -41,7 +41,7 @@ api.get('/statistics').then((response) => {
         <NGi>
           <NStatistic label="Imken 的服务器娘在 24h 内处理了…">
             <NSkeleton size="medium" v-if="loading" />
-            <NNumberAnimation v-if="!loading" :to="today_message" />
+            <NNumberAnimation v-if="!loading" :to="todayMessage" />
             <template #suffix v-if="!loading">
               条犇犇！
             </template>
@@ -50,8 +50,8 @@ api.get('/statistics').then((response) => {
       </NGrid>
       <NSkeleton v-if="loading" text />
       <span v-if="!loading">其中，24h 内有
-        <NNumberAnimation v-if="!loading" :to="today_user" /> 个用户发了犇犇，历史上有
-        <NNumberAnimation v-if="!loading" :to="total_user" /> 个用户发了犇犇。厉害吧！
+        <NNumberAnimation v-if="!loading" :to="todayUser" /> 个用户发了犇犇，历史上有
+        <NNumberAnimation v-if="!loading" :to="totalUser" /> 个用户发了犇犇。厉害吧！
       </span><br>
       <NText type="info">
         本站运营成本较高，如果可以的话，你可以考虑<b>

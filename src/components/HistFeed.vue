@@ -1,50 +1,46 @@
 <script setup>
-import { NAvatar, NButton, NInput, NInputGroup, NList, NListItem, NPagination, NText, NThing } from 'naive-ui'
-import { ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { api } from '../utils'
-import MarkdownIt from 'markdown-it'
+import { NAvatar, NButton, NInput, NInputGroup, NList, NListItem, NPagination, NText, NThing } from 'naive-ui';
+import { ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { api } from '../utils';
+import MarkdownIt from 'markdown-it';
 
-const route = useRoute()
-const router = useRouter()
-const md = new MarkdownIt()
+const route = useRoute();
+const router = useRouter();
+const md = new MarkdownIt();
 
-const onlyAllowNumber = (value) => !value || /^\d+$/.test(value)
+const onlyAllowNumber = (value) => !value || /^\d+$/.test(value);
 
-const feedList = ref([])
-const show = ref({})
-var isQueried = ref(false), isLoading = ref(false)
-const page = ref(1)
-const uid = ref(route.params.uid)
-const inputUid = ref(route.params.uid)
-const replaceR = /@\[(\S[^\[\]]+)\]\(\/user\/(\d+)\)/g
+const feedList = ref([]);
+const show = ref({});
+var isQueried = ref(false), isLoading = ref(false);
+const page = ref(1);
+const uid = ref(route.params.uid);
+const inputUid = ref(route.params.uid);
+const replaceR = /@\[(\S[^\[\]]+)\]\(\/user\/(\d+)\)/g; // eslint-disable-line
 
 const query = () => {
-  show.value = {}
-  feedList.value = []
-  isLoading.value = 1
-  api.get('/blackHistory/feed/' + uid.value + '?page=' + page.value).then((response) => {
-    let data = response.data
-    feedList.value = data.content.feeds
-    console.log(feedList)
-    isQueried.value = 1
-    isLoading.value = 0
-  })
-}
+  show.value = {};
+  feedList.value = [];
+  isLoading.value = 1;
+  api.get(`/blackHistory/feed/${  uid.value  }?page=${  page.value}`).then((response) => {
+    const {data} = response;
+    feedList.value = data.content.feeds;
+    isQueried.value = 1;
+    isLoading.value = 0;
+  });
+};
 
 const redirect = () => {
-  uid.value = inputUid.value
-  router.push('/historyFeed/' + uid.value)
-  page.value = 1
-  query()
-}
+  uid.value = inputUid.value;
+  router.push(`/historyFeed/${  uid.value}`);
+  page.value = 1;
+  query();
+};
 
-watch(page, query)
+watch(page, query);
 
-if (uid.value != '') {
-  console.log('empty')
-  query()
-}
+if (uid.value != '') query();
 </script>
 
 <template>
@@ -60,7 +56,7 @@ if (uid.value != '') {
       {{ uid }} 的历史犇犇 <span v-if="!isLoading">本页共 {{ feedList.length }} 条犇犇</span>
       <NPagination v-model:page="page" :page-count="100" v-bind:on-update="query"></NPagination>
     </template>
-    <NListItem v-for="feed, i in feedList">
+    <NListItem v-for="feed in feedList" :key="feed">
       <NThing :title="feed.name">
         <template #avatar>
           <NAvatar round size="medium" :src="'https://cdn.luogu.com.cn/upload/usericon/' + uid + '.png'" />

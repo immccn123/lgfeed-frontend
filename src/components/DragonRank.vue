@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { api } from '../utils'
+import { ref } from 'vue';
+import { api } from '../utils';
 import {
   NAvatar,
   NButton,
@@ -9,10 +9,10 @@ import {
   NSpace,
   NStatistic,
   NNumberAnimation,
-} from 'naive-ui'
+} from 'naive-ui';
 
-var lastUpdate = ref('Loading...')
-var dragonList = []
+var lastUpdate = ref('Loading...');
+var dragonList = [];
 
 const colorList = [
   'gold',
@@ -25,14 +25,14 @@ const colorList = [
   '#990000',
   '#550000',
   'black',
-]
+];
 
 api.get('/rank/dragon')
   .then((response) => {
-    let data = response.data
-    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString()
-    dragonList = data.content
-  })
+    const {data} = response;
+    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
+    dragonList = data.content;
+  });
 
 </script>
 
@@ -44,7 +44,7 @@ api.get('/rank/dragon')
     <template #footer>
       上次更新：{{ lastUpdate }}
     </template>
-    <NListItem v-for="dragon, i in dragonList">
+    <NListItem v-for="dragon, i in dragonList" :key="i">
       <template #prefix>
         #{{ i + 1 }}
       </template>

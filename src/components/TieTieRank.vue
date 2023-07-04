@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { api } from '../utils'
+import { ref } from 'vue';
+import { api } from '../utils';
 import {
   NAvatar,
   NButton,
@@ -9,17 +9,17 @@ import {
   NSpace,
   NStatistic,
   NNumberAnimation,
-} from 'naive-ui'
+} from 'naive-ui';
 
-var lastUpdate = ref('Loading...')
-var tietieList = []
+var lastUpdate = ref('Loading...');
+var tietieList = [];
 
 api.get('/rank/tietie')
   .then((response) => {
-    let data = response.data
-    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString()
-    tietieList = data.content
-  })
+    const {data} = response;
+    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
+    tietieList = data.content;
+  });
 
 </script>
 
@@ -31,7 +31,7 @@ api.get('/rank/tietie')
     <template #footer>
       上次更新：{{ lastUpdate }}
     </template>
-    <NListItem v-for="tietie, i in tietieList">
+    <NListItem v-for="tietie, i in tietieList" :key="i">
       <template #prefix>
         #{{ i + 1 }}
       </template>
