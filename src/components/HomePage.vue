@@ -12,9 +12,9 @@ const loading = ref(true);
 api.get('/statistics').then((response) => {
   const {data} = response;
   todayMessage.value = data.content.today;
-  todayUser.value = data.content.todayUser;
+  todayUser.value = data.content.today_user;
   total.value = data.content.total;
-  totalUser.value = data.content.totalUser;
+  totalUser.value = data.content.total_user;
   loading.value = false;
 });
 
