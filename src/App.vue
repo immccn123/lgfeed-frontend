@@ -1,20 +1,5 @@
-<template>
-  <NLayout>
-    <NLayoutHeader>
-      <NSpace justify="center">
-        <NMenu mode="horizontal" :options="menuOptions" />
-      </NSpace>
-    </NLayoutHeader>
-    <NLayoutContent>
-      <NSpace justify="center">
-        <RouterView></RouterView>
-      </NSpace>
-    </NLayoutContent>
-  </NLayout>
-</template>
-
-<script>
-import { defineComponent, h } from "vue";
+<script setup>
+import { h } from "vue";
 import { NMenu, NLayout, NLayoutHeader, NLayoutContent, NSpace } from "naive-ui";
 import { RouterLink, RouterView } from "vue-router";
 
@@ -80,20 +65,19 @@ const menuOptions = [
     key: "histfeed",
   },
 ];
-
-export default defineComponent({
-  setup() {
-    return {
-      menuOptions
-    };
-  },
-  components: {
-    NMenu,
-    RouterView,
-    NLayout,
-    NLayoutHeader,
-    NLayoutContent,
-    NSpace,
-  },
-});
 </script>
+
+<template>
+  <NLayout>
+    <NLayoutHeader>
+      <NSpace justify="center">
+        <NMenu mode="horizontal" :options="menuOptions" />
+      </NSpace>
+    </NLayoutHeader>
+    <NLayoutContent>
+      <NSpace justify="center">
+        <RouterView></RouterView>
+      </NSpace>
+    </NLayoutContent>
+  </NLayout>
+</template>
