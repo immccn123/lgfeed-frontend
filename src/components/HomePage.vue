@@ -87,6 +87,7 @@ api.get('/statistics').then((response) => {
       <NCode>Idea & Spider by <a href="https://rickyxrc.cc/"><span style="color: black;">R</span><span
             style="color: red;">ickyxrc</span></a></NCode>
       <br>
+      <NA href="https://github.com/immccn123/lgfeed-frontend">lgfeed-frontend - Opensource Project</NA>
     </p>
   </div>
 </template>
