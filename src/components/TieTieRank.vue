@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { api } from '../utils';
-import { NAvatar,
+import {
+  NAvatar,
   NButton,
   NList,
   NListItem,
