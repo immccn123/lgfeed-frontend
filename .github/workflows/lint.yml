@@ -36,10 +36,12 @@ jobs:
       - name: Install Node.js dependencies
         run: pnpm install
 
+      - name: Format Code with Prettier
+        uses: creyD/prettier_action@v4.3
+
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
           eslint_auto_fix: true
           eslint: true
-          prettier_auto_fix: true
-          prettier: true
+          prettier: false
