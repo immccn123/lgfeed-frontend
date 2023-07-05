@@ -51,9 +51,3 @@ api.get('/rank/bePinged')
     </NListItem>
   </NList>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

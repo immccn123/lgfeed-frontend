@@ -66,9 +66,3 @@ api.get('/rank/dragon')
     </NListItem>
   </NList>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
