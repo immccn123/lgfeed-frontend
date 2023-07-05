@@ -10,7 +10,6 @@
     "lint": "eslint . src/**/*"
   },
   "dependencies": {
-    "@vitejs/plugin-vue-jsx": "^3.0.1",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "markdown-it": "^13.0.1",
@@ -23,6 +22,7 @@
     "@vitejs/plugin-vue": "^4.1.0",
     "eslint": "^8.44.0",
     "eslint-plugin-vue": "^9.15.1",
+    "prettier": "2.8.8",
     "vite": "^4.3.9"
   }
 }

@@ -27,37 +27,37 @@ const colorList = [
   'black',
 ];
 
-api.get('/rank/dragon')
-  .then((response) => {
-    const {data} = response;
-    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
-    dragonList = data.content;
-  });
-
+api.get('/rank/dragon').then((response) => {
+  const { data } = response;
+  lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
+  dragonList = data.content;
+});
 </script>
 
 <template>
-  <NList bordered hoverable clickable style="min-width: 600px;">
+  <NList bordered hoverable clickable style="min-width: 600px">
     <template #header>
       <h2>30 日犇犇龙王榜</h2>
     </template>
-    <template #footer>
-      上次更新：{{ lastUpdate }}
-    </template>
-    <NListItem v-for="dragon, i in dragonList" :key="i">
-      <template #prefix>
-        #{{ i + 1 }}
-      </template>
-      <RouterLink style="display: block;" :to="'/historyFeed/' + dragon.uid">
-        <NSpace style="display: flex; align-items: center;">
-          <NAvatar style="display: inline-block;" round size="small"
-            :src="'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'" />
+    <template #footer> 上次更新：{{ lastUpdate }} </template>
+    <NListItem v-for="(dragon, i) in dragonList" :key="i">
+      <template #prefix> #{{ i + 1 }} </template>
+      <RouterLink style="display: block" :to="'/historyFeed/' + dragon.uid">
+        <NSpace style="display: flex; align-items: center">
+          <NAvatar
+            style="display: inline-block"
+            round
+            size="small"
+            :src="
+              'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'
+            "
+          />
           <NButton text>{{ dragon.name }}</NButton>
         </NSpace>
       </RouterLink>
       <template #suffix>
         <NStatistic tabular-nums>
-          <span v-if="i < 10" :style="{ 'color': colorList[i] }">
+          <span v-if="i < 10" :style="{ color: colorList[i] }">
             <NNumberAnimation v-if="i < 10" :from="0" :to="dragon.count" />
           </span>
           <span v-else>{{ dragon.count }}</span>
@@ -66,9 +66,3 @@ api.get('/rank/dragon')
     </NListItem>
   </NList>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

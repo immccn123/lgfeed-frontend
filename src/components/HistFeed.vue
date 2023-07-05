@@ -1,5 +1,15 @@
 <script setup>
-import { NAvatar, NButton, NInput, NInputGroup, NList, NListItem, NPagination, NText, NThing } from 'naive-ui';
+import {
+  NAvatar,
+  NButton,
+  NInput,
+  NInputGroup,
+  NList,
+  NListItem,
+  NPagination,
+  NText,
+  NThing,
+} from 'naive-ui';
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { api } from '../utils';
@@ -13,7 +23,8 @@ const onlyAllowNumber = (value) => !value || /^\d+$/.test(value);
 
 const feedList = ref([]);
 const show = ref({});
-var isQueried = ref(false), isLoading = ref(false);
+var isQueried = ref(false),
+  isLoading = ref(false);
 const page = ref(1);
 const uid = ref(route.params.uid);
 const inputUid = ref(route.params.uid);
@@ -23,17 +34,19 @@ const query = () => {
   show.value = {};
   feedList.value = [];
   isLoading.value = 1;
-  api.get(`/blackHistory/feed/${  uid.value  }?page=${  page.value}`).then((response) => {
-    const {data} = response;
-    feedList.value = data.content.feeds;
-    isQueried.value = 1;
-    isLoading.value = 0;
-  });
+  api
+    .get(`/blackHistory/feed/${uid.value}?page=${page.value}`)
+    .then((response) => {
+      const { data } = response;
+      feedList.value = data.content.feeds;
+      isQueried.value = 1;
+      isLoading.value = 0;
+    });
 };
 
 const redirect = () => {
   uid.value = inputUid.value;
-  router.push(`/historyFeed/${  uid.value}`);
+  router.push(`/historyFeed/${uid.value}`);
   page.value = 1;
   query();
 };
@@ -45,32 +58,70 @@ if (uid.value != '') query();
 
 <template>
   <h2>历史犇犇查询</h2>
-  <a id="lghome" v-if="uid != ''" target="_blank" :href="'https://www.luogu.com.cn/user/' + uid">前往洛谷个人主页</a>
+  <a
+    id="lghome"
+    v-if="uid != ''"
+    target="_blank"
+    :href="'https://www.luogu.com.cn/user/' + uid"
+    >前往洛谷个人主页</a
+  >
   <NInputGroup>
-    <NInput type="text" :allow-input="onlyAllowNumber" placeholder="UID" v-model:value="inputUid" :loading="isLoading">
+    <NInput
+      type="text"
+      :allow-input="onlyAllowNumber"
+      placeholder="UID"
+      v-model:value="inputUid"
+      :loading="isLoading"
+    >
     </NInput>
-    <NButton type="primary" :onclick="redirect" :disabled="isLoading">Go</NButton>
+    <NButton type="primary" :onclick="redirect" :disabled="isLoading"
+      >Go</NButton
+    >
   </NInputGroup>
-  <NList v-if="isQueried" style="max-width: 500px;">
+  <NList v-if="isQueried" style="max-width: 500px">
     <template #header>
-      {{ uid }} 的历史犇犇 <span v-if="!isLoading">本页共 {{ feedList.length }} 条犇犇</span>
-      <NPagination v-model:page="page" :page-count="100" v-bind:on-update="query"></NPagination>
+      {{ uid }} 的历史犇犇
+      <span v-if="!isLoading">本页共 {{ feedList.length }} 条犇犇</span>
+      <NPagination
+        v-model:page="page"
+        :page-count="100"
+        v-bind:on-update="query"
+      ></NPagination>
     </template>
     <NListItem v-for="feed in feedList" :key="feed">
       <NThing :title="feed.name">
         <template #avatar>
-          <NAvatar round size="medium" :src="'https://cdn.luogu.com.cn/upload/usericon/' + uid + '.png'" />
+          <NAvatar
+            round
+            size="medium"
+            :src="'https://cdn.luogu.com.cn/upload/usericon/' + uid + '.png'"
+          />
         </template>
         <template #description>
-          <span style="color: gray; font-size: 0.7em;">{{ new Date(feed.time).toLocaleString() }} | 于 {{ new
-            Date(feed.grab_time).toLocaleString() }} 抓取</span>
+          <span style="color: gray; font-size: 0.7em"
+            >{{ new Date(feed.time).toLocaleString() }} | 于
+            {{ new Date(feed.grab_time).toLocaleString() }} 抓取</span
+          >
         </template>
         <template #header-extra>
-          <NButton :on-click="() => { show[i] = !show[i] }">{{ show[i] ? '收起' : '展示' }}源码</NButton>
+          <NButton
+            :on-click="
+              () => {
+                show[i] = !show[i];
+              }
+            "
+            >{{ show[i] ? '收起' : '展示' }}源码</NButton
+          >
         </template>
-        <div v-html="md.render(feed.content.replaceAll(replaceR, '@[$1#$2](/historyFeed/$2)'))" class="feed-content">
-        </div>
-        <div :hidden="!show[i]" style="overflow-x: scroll; max-width: 500px;">
+        <div
+          v-html="
+            md.render(
+              feed.content.replaceAll(replaceR, '@[$1#$2](/historyFeed/$2)')
+            )
+          "
+          class="feed-content"
+        ></div>
+        <div :hidden="!show[i]" style="overflow-x: scroll; max-width: 500px">
           <NText type="info">
             <pre>{{ feed.content }}</pre>
           </NText>
@@ -78,7 +129,11 @@ if (uid.value != '') query();
       </NThing>
     </NListItem>
     <template #footer v-if="!isLoading">
-      <NPagination v-model:page="page" :page-count="100" v-bind:on-update="query"></NPagination>
+      <NPagination
+        v-model:page="page"
+        :page-count="100"
+        v-bind:on-update="query"
+      ></NPagination>
     </template>
   </NList>
 </template>
@@ -92,18 +147,18 @@ if (uid.value != '') query();
 #lghome {
   color: rgb(63, 181, 181);
   text-decoration: none;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .feed-content * a:hover,
 #lghome:hover {
   color: rgb(41, 117, 117);
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .feed-content * a:focus,
 #lghome:focus {
   color: rgb(28, 80, 80);
-  transition: .1s;
+  transition: 0.1s;
 }
 </style>
