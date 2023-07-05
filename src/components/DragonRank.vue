@@ -58,7 +58,7 @@ api.get('/rank/dragon')
       <template #suffix>
         <NStatistic tabular-nums>
           <span v-if="i < 10" :style="{ 'color': colorList[i] }">
-            <NNumberAnimation duration="4000" v-if="i < 10" :from="0" :to="dragon.count" />
+            <NNumberAnimation v-if="i < 10" :from="0" :to="dragon.count" />
           </span>
           <span v-else>{{ dragon.count }}</span>
         </NStatistic>

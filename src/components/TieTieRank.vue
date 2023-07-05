@@ -44,7 +44,7 @@ api.get('/rank/tietie')
       </RouterLink>
       <template #suffix>
         <NStatistic tabular-nums>
-          <span v-if="i < 10" style="color: rgb(255, 141, 160);"><NNumberAnimation duration="4000" :from="0" :to="tietie.count" /></span>
+          <span v-if="i < 10" style="color: rgb(255, 141, 160);"><NNumberAnimation :from="0" :to="tietie.count" /></span>
           <span v-else>{{ tietie.count }}</span>
         </NStatistic>
       </template>

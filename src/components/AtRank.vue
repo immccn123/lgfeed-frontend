@@ -44,7 +44,7 @@ api.get('/rank/pingOthers')
       </RouterLink>
       <template #suffix>
         <NStatistic tabular-nums>
-          <NNumberAnimation duration="4000" v-if="i < 10" :from="0" :to="pingOthers.count" />
+          <NNumberAnimation v-if="i < 10" :from="0" :to="pingOthers.count" />
           <span v-else>{{ pingOthers.count }}</span>
         </NStatistic>
       </template>
