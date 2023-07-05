@@ -80,8 +80,18 @@ const menuOptions = [
         },
         { default: () => '历史犇犇查询' }
       ),
-    // <RouterLink to='/historyFeed' default = '/历史犇犇查询'>
     key: 'histfeed',
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: '/historyFeed',
+        },
+        { default: () => '你们真是…榜' }
+      ),
+    key: 'csbzbsyy',
   },
 ];
 

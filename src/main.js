@@ -26,6 +26,11 @@ const routes = [
     component: () => import('./components/AtRank.vue'),
     name: '艾特榜',
   },
+  {
+    path: '/csbzbsyyKing',
+    component: () => import('./components/CsbzbsyyRank.vue'),
+    name: '你们真是…榜',
+  },
   { path: '/historyFeed/:uid(\\d+)?', component: HistFeed, name: '历史犇犇' },
 ];
 
