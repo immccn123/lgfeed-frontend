@@ -1,7 +1,8 @@
 <script setup>
-import { h } from "vue";
-import { NMenu, NLayout, NLayoutHeader, NLayoutContent, NSpace } from "naive-ui";
-import { RouterLink, RouterView } from "vue-router";
+import { h } from 'vue';
+import { NMenu, NLayout, NLayoutHeader, NLayoutContent, NSpace, NGrid, NGridItem, NDropdown, NButton, NIcon } from 'naive-ui';
+import { RouterLink, RouterView } from 'vue-router';
+import { MenuOutline } from '@vicons/ionicons5';
 
 const menuOptions = [
   {
@@ -12,7 +13,7 @@ const menuOptions = [
       },
       { default: () => '首页' },
     ),
-    key: "home",
+    key: 'home',
   },
   {
     label: () => h(
@@ -22,7 +23,7 @@ const menuOptions = [
       },
       { default: () => '龙王榜' }
     ),
-    key: "dragon-king",
+    key: 'dragon-king',
   },
   {
     label: () => h(
@@ -32,7 +33,7 @@ const menuOptions = [
       },
       { default: () => '贴贴榜' }
     ),
-    key: "tietie-king",
+    key: 'tietie-king',
   },
   {
     label: () => h(
@@ -42,7 +43,7 @@ const menuOptions = [
       },
       { default: () => '铃铛榜' }
     ),
-    key: "bell-king",
+    key: 'bell-king',
   },
   {
     label: () => h(
@@ -52,7 +53,7 @@ const menuOptions = [
       },
       { default: () => '艾特榜' }
     ),
-    key: "at-king",
+    key: 'at-king',
   },
   {
     label: () => h(
@@ -62,22 +63,56 @@ const menuOptions = [
       },
       { default: () => '历史犇犇查询' }
     ),
-    key: "histfeed",
+    // <RouterLink to='/historyFeed' default = '/历史犇犇查询'>
+    key: 'histfeed',
+  },
+];
+
+
+const menuOptionsMobile = [
+  {
+    label: () => h(
+      NDropdown,
+      { trigger: 'hover', options: menuOptions },
+      [
+        h(
+          NButton,
+          [],
+          [
+            h(
+              NIcon,
+              {},
+              h(MenuOutline)
+            )
+          ]
+        )
+      ]
+    ),
+    key: 'histfeed',
   },
 ];
 </script>
 
 <template>
-  <NLayout>
-    <NLayoutHeader>
-      <NSpace justify="center">
-        <NMenu mode="horizontal" :options="menuOptions" />
-      </NSpace>
-    </NLayoutHeader>
-    <NLayoutContent>
-      <NSpace justify="center">
-        <RouterView></RouterView>
-      </NSpace>
-    </NLayoutContent>
-  </NLayout>
+    <NLayout>
+        <NLayoutHeader>
+            <n-grid cols="12" item-responsive responsive="screen">
+                <n-grid-item span="0 m:12">
+                    <NSpace justify="center">
+                        <NMenu mode="horizontal" :options="menuOptions" />
+                    </NSpace>
+                </n-grid-item>
+                <n-grid-item span="12 m:0">
+                    <n-menu mode="horizontal" :options="menuOptionsMobile" />
+                </n-grid-item>
+            </n-grid>
+        </NLayoutHeader>
+        <NLayoutContent>
+            <NSpace justify="center">
+                <RouterView></RouterView>
+            </NSpace>
+        </NLayoutContent>
+    </NLayout>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"> -->
+    <!-- </svg> -->
 </template>
