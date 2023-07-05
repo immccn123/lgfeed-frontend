@@ -6,13 +6,28 @@ import HistFeed from './components/HistFeed.vue';
 
 const routes = [
   { path: '/', component: () => import('./components/HomePage.vue') },
-  { path: '/dragonKing', component: () => import('./components/DragonRank.vue'), name: '龙王榜' },
-  { path: '/tietieKing', component: () => import('./components/TieTieRank.vue'), name: '贴贴榜' },
-  { path: '/bellKing', component: () => import('./components/BellRank.vue'), name: '铃铛榜' },
-  { path: '/atKing', component: () => import('./components/AtRank.vue'), name: '艾特榜' },
+  {
+    path: '/dragonKing',
+    component: () => import('./components/DragonRank.vue'),
+    name: '龙王榜',
+  },
+  {
+    path: '/tietieKing',
+    component: () => import('./components/TieTieRank.vue'),
+    name: '贴贴榜',
+  },
+  {
+    path: '/bellKing',
+    component: () => import('./components/BellRank.vue'),
+    name: '铃铛榜',
+  },
+  {
+    path: '/atKing',
+    component: () => import('./components/AtRank.vue'),
+    name: '艾特榜',
+  },
   { path: '/historyFeed/:uid(\\d+)?', component: HistFeed, name: '历史犇犇' },
 ];
-
 
 const router = createRouter({
   history: createWebHistory(),
