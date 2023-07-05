@@ -87,7 +87,7 @@ const menuOptions = [
       h(
         RouterLink,
         {
-          to: '/historyFeed',
+          to: '/csbzbsyyKing',
         },
         { default: () => '你们真是…榜' }
       ),
