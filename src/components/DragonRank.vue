@@ -42,7 +42,7 @@ api.get('/rank/dragon').then((response) => {
     <template #footer> 上次更新：{{ lastUpdate }} </template>
     <NListItem v-for="(dragon, i) in dragonList" :key="i">
       <template #prefix> #{{ i + 1 }} </template>
-      <RouterLink style="display: block" :to="'/historyFeed/' + dragon.uid">
+      <RouterLink style="display: block" :to="'/user/' + dragon.uid">
         <NSpace style="display: flex; align-items: center">
           <NAvatar
             style="display: inline-block"

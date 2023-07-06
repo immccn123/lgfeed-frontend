@@ -29,7 +29,7 @@ api.get('/rank/bePinged').then((response) => {
     <template #footer> 上次更新：{{ lastUpdate }} </template>
     <NListItem v-for="(bePinged, i) in bePingedList" :key="i">
       <template #prefix> #{{ i + 1 }} </template>
-      <RouterLink style="display: block" :to="'/historyFeed/' + bePinged.uid">
+      <RouterLink style="display: block" :to="'/user/' + bePinged.uid">
         <NSpace style="display: flex; align-items: center">
           <NAvatar
             style="display: inline-block"

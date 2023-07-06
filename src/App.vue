@@ -76,22 +76,11 @@ const menuOptions = [
       h(
         RouterLink,
         {
-          to: '/historyFeed',
+          to: '/user',
         },
-        { default: () => '历史犇犇查询' }
+        { default: () => '用户历史' }
       ),
     key: 'histfeed',
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: '/csbzbsyyKing',
-        },
-        { default: () => '你们真是…榜' }
-      ),
-    key: 'csbzbsyy',
   },
 ];
 

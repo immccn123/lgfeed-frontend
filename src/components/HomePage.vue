@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import {
   NCode,
-  NH3,
+  NH2,
   NNumberAnimation,
   NSkeleton,
   NStatistic,
@@ -31,11 +31,7 @@ api.get('/statistics').then((response) => {
 
 <template>
   <div style="max-width: 560px; padding: 5%">
-    <NH3 prefix="bar">
-      <NText>
-        <b>统计信息</b>
-      </NText>
-    </NH3>
+    <NH2 prefix="bar">统计信息</NH2>
     <p>
       <NGrid :cols="2">
         <NGi>
@@ -68,22 +64,14 @@ api.get('/statistics').then((response) => {
       </NText>
     </p>
     <p>
-      <NH3 prefix="bar">
-        <NText>
-          <b>广告位</b>
-        </NText>
-      </NH3>
+      <NH2 prefix="bar">广告位</NH2>
       <NText>
         广告位招租。支持文字 / 图片等。<br />有需要的联系 me[at]imken.moe /
         洛谷私信 385633，价格面议（不高）。
       </NText>
     </p>
     <p>
-      <NH3 prefix="bar">
-        <NText>
-          <b>免责声明</b>
-        </NText>
-      </NH3>
+      <NH2 prefix="bar">免责声明</NH2>
       <NText>
         本犇犇保存站的数据从洛谷全网犇犇爬取，并在其基础上进行处理，承诺中途不进行任何改动。如遇数据错误，请自行到原网站查看原始消息并自行判断真假，我们不对数据真实性和完整性做任何保证。
       </NText>

@@ -29,7 +29,7 @@ api.get('/rank/pingOthers').then((response) => {
     <template #footer> 上次更新：{{ lastUpdate }} </template>
     <NListItem v-for="(pingOthers, i) in pingOthersList" :key="i">
       <template #prefix> #{{ i + 1 }} </template>
-      <RouterLink style="display: block" :to="'/historyFeed/' + pingOthers.uid">
+      <RouterLink style="display: block" :to="'/user/' + pingOthers.uid">
         <NSpace style="display: flex; align-items: center">
           <NAvatar
             style="display: inline-block"

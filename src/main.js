@@ -27,11 +27,14 @@ const routes = [
     name: '艾特榜',
   },
   {
-    path: '/csbzbsyyKing',
-    component: () => import('./components/CsbzbsyyRank.vue'),
-    name: '你们真是…榜',
+    path: '/historyFeed/:uid(\\d+)?',
+    redirect: (to) => ({ path: `/user/${to.params.uid}` }),
   },
-  { path: '/historyFeed/:uid(\\d+)?', component: HistFeed, name: '历史犇犇' },
+  {
+    path: '/user/:uid(\\d+)?',
+    component: HistFeed,
+    name: '用户历史',
+  },
 ];
 
 const router = createRouter({

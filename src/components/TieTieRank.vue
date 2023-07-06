@@ -29,7 +29,7 @@ api.get('/rank/tietie').then((response) => {
     <template #footer> 上次更新：{{ lastUpdate }} </template>
     <NListItem v-for="(tietie, i) in tietieList" :key="i">
       <template #prefix> #{{ i + 1 }} </template>
-      <RouterLink style="display: block" :to="'/historyFeed/' + tietie.uid">
+      <RouterLink style="display: block" :to="'/user/' + tietie.uid">
         <NSpace style="display: flex; align-items: center">
           <NAvatar
             style="display: inline-block"
