@@ -10,6 +10,7 @@ import {
   NA,
   NGi,
   NGrid,
+  NAlert,
 } from 'naive-ui';
 import { api } from '../utils';
 
@@ -31,6 +32,12 @@ api.get('/statistics').then((response) => {
 
 <template>
   <div style="max-width: 560px; padding: 5%">
+    <NAlert title="一些需要您注意的事情…" type="info">
+      功能建议 / bug 反馈请优先<NA
+        href="https://www.luogu.com.cn/chat?uid=385633"
+        >联系 Imken</NA
+      >。谢谢。
+    </NAlert>
     <NH2 prefix="bar">统计信息</NH2>
     <p>
       <NGrid :cols="2">
