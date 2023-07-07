@@ -50,14 +50,15 @@ watch(dailyURL, () => {
   <NList bordered hoverable clickable style="min-width: 600px">
     <template #header>
       <h2>
-        <NSwitch checked-value="dailyDragon" unchecked-value="dragon" v-model:value="dailyURL" :round="false">
-          <template #checked>
-            24 小时
-          </template>
-          <template #unchecked>
-            30 日
-          </template>
-        </NSwitch>犇犇龙王榜
+        <NSwitch
+          checked-value="dailyDragon"
+          unchecked-value="dragon"
+          v-model:value="dailyURL"
+          :round="false"
+        >
+          <template #checked> 24 小时 </template>
+          <template #unchecked> 30 日 </template> </NSwitch
+        >犇犇龙王榜
       </h2>
     </template>
     <template #footer> 上次更新：{{ lastUpdate }} </template>
@@ -65,8 +66,14 @@ watch(dailyURL, () => {
       <template #prefix> #{{ i + 1 }} </template>
       <RouterLink style="display: block" :to="'/user/' + dragon.uid">
         <NSpace style="display: flex; align-items: center">
-          <NAvatar style="display: inline-block" round size="small" :src="'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'
-            " />
+          <NAvatar
+            style="display: inline-block"
+            round
+            size="small"
+            :src="
+              'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'
+            "
+          />
           <NButton text>{{ dragon.name }}</NButton>
         </NSpace>
       </RouterLink>
