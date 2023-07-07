@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { api } from '../utils';
 import {
   NAvatar,
@@ -9,9 +9,11 @@ import {
   NSpace,
   NStatistic,
   NNumberAnimation,
+  NSwitch,
 } from 'naive-ui';
 
-var lastUpdate = ref('Loading...');
+const lastUpdate = ref('Loading...');
+const dailyURL = ref('dragon');
 var dragonList = [];
 
 const colorList = [
@@ -32,26 +34,39 @@ api.get('/rank/dragon').then((response) => {
   lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
   dragonList = data.content;
 });
+
+watch(dailyURL, () => {
+  dragonList = [];
+  lastUpdate.value = 'Loading...';
+  api.get(`/rank/${dailyURL.value}`).then((response) => {
+    const { data } = response;
+    lastUpdate.value = new Date(data.cached_at * 1000).toLocaleString();
+    dragonList = data.content;
+  });
+});
 </script>
 
 <template>
   <NList bordered hoverable clickable style="min-width: 600px">
     <template #header>
-      <h2>30 日犇犇龙王榜</h2>
+      <h2>
+        <NSwitch checked-value="dailyDragon" unchecked-value="dragon" v-model:value="dailyURL" :round="false">
+          <template #checked>
+            24 小时
+          </template>
+          <template #unchecked>
+            30 日
+          </template>
+        </NSwitch>犇犇龙王榜
+      </h2>
     </template>
     <template #footer> 上次更新：{{ lastUpdate }} </template>
     <NListItem v-for="(dragon, i) in dragonList" :key="i">
       <template #prefix> #{{ i + 1 }} </template>
       <RouterLink style="display: block" :to="'/user/' + dragon.uid">
         <NSpace style="display: flex; align-items: center">
-          <NAvatar
-            style="display: inline-block"
-            round
-            size="small"
-            :src="
-              'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'
-            "
-          />
+          <NAvatar style="display: inline-block" round size="small" :src="'https://cdn.luogu.com.cn/upload/usericon/' + dragon.uid + '.png'
+            " />
           <NButton text>{{ dragon.name }}</NButton>
         </NSpace>
       </RouterLink>
