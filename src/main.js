@@ -12,11 +12,6 @@ const routes = [
     name: '龙王榜',
   },
   {
-    path: '/tietieKing',
-    component: () => import('./components/TieTieRank.vue'),
-    name: '贴贴榜',
-  },
-  {
     path: '/bellKing',
     component: () => import('./components/BellRank.vue'),
     name: '铃铛榜',

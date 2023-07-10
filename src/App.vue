@@ -43,17 +43,6 @@ const menuOptions = [
       h(
         RouterLink,
         {
-          to: '/tietieKing',
-        },
-        { default: () => '贴贴榜' }
-      ),
-    key: 'tietie-king',
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
           to: '/bellKing',
         },
         { default: () => '铃铛榜' }
