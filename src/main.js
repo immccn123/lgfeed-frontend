@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import HistFeed from './components/HistFeed.vue';
 
 const routes = [
   { path: '/', component: () => import('./components/HomePage.vue') },
@@ -27,8 +26,13 @@ const routes = [
   },
   {
     path: '/user/:uid(\\d+)?',
-    component: HistFeed,
+    component: () => import('./components/HistFeed.vue'),
     name: '用户历史',
+  },
+  {
+    path: '/feed/:feedId(\\d+)',
+    component: () => import('./components/SingleFeed.vue'),
+    name: '单犇查询',
   },
 ];
 

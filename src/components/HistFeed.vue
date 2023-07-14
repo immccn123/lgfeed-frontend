@@ -148,10 +148,11 @@ if (uid.value != '') query();
             />
           </template>
           <template #description>
+            <RouterLink :to="`/feed/${feed.id}`" style="text-decoration: gray underline;">
             <span style="color: gray; font-size: 0.7em"
               >{{ new Date(feed.time).toLocaleString() }} | 于
               {{ new Date(feed.grab_time).toLocaleString() }} 抓取</span
-            >
+            ></RouterLink>
           </template>
           <template #header-extra>
             <NButton

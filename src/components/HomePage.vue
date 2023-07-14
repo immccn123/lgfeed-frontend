@@ -112,16 +112,16 @@ api.get('/statistics').then((response) => {
         >Frontend & Backend by
         <a href="https://imken.moe/"
           ><span style="color: rgb(255, 145, 163)">Imken Luo</span></a
-        ></NCode
-      >
+        >
+      </NCode>
       <br />
       <NCode
         >Idea & Spider by
         <a href="https://rickyxrc.cc/"
           ><span style="color: black">R</span
           ><span style="color: red">ickyxrc</span></a
-        ></NCode
-      >
+        >
+      </NCode>
       <br />
     </p>
   </div>
