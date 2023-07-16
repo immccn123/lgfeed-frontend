@@ -170,7 +170,7 @@ if (uid.value != '') query();
           </template>
           <div
             v-html="
-              md.render(feed.content.replaceAll(replaceR, '@[$1#$2](/user/$2)'))
+              md.render(feed.content.replace(replaceR, '@[$1#$2](/user/$2)'))
             "
             class="feed-content"
           ></div>
