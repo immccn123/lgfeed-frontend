@@ -59,9 +59,7 @@ const replaceR = /@\[(\S[^\[\]]+)\]\(\/user\/(\d+)\)/g; // eslint-disable-line
         >
       </template>
       <div
-        v-html="
-          md.render(feed.content.replace(replaceR, '@[$1#$2](/user/$2)'))
-        "
+        v-html="md.render(feed.content.replace(replaceR, '@[$1#$2](/user/$2)'))"
         class="feed-content"
       ></div>
       <div v-if="showRawCode" style="overflow-x: scroll; max-width: 500px">
