@@ -33,10 +33,10 @@ api.get('/statistics').then((response) => {
 <template>
   <div style="max-width: 560px; padding: 5%">
     <NAlert title="一些需要您注意的事情…" type="info">
-      功能建议 / bug 反馈请优先<NA
-        href="https://www.luogu.com.cn/chat?uid=385633"
-        >联系 Imken</NA
-      >。谢谢。
+      交流群 <NA
+        href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Pp872M4iwavRQJFXyL9IXcire8EiHaAw&authKey=jYi4Z9RSWHPSU%2BE9nuzR9NtjXHgZgDIVdrvly%2BHUKTBjtgb9SyGkJsqs8PgWobTM&noverify=0&group_code=538122849"
+        >538122849</NA
+      >，欢迎加入 Nya~
     </NAlert>
     <NH2 prefix="bar">统计信息</NH2>
     <p>
@@ -68,13 +68,6 @@ api.get('/statistics').then((response) => {
         本站运营成本较高，如果可以的话，你可以考虑<b>
           <NA href="https://sponsor.imken.moe">捐赠</NA> </b
         >来支持我们的开发，谢谢啦～
-      </NText>
-    </p>
-    <p>
-      <NH2 prefix="bar">广告位</NH2>
-      <NText>
-        广告位招租。支持文字 / 图片等。<br />有需要的联系 me[at]imken.moe /
-        洛谷私信 385633，价格面议（不高）。
       </NText>
     </p>
     <p>
