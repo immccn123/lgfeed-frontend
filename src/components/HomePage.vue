@@ -33,7 +33,8 @@ api.get('/statistics').then((response) => {
 <template>
   <div style="max-width: 560px; padding: 5%">
     <NAlert title="一些需要您注意的事情…" type="info">
-      交流群 <NA
+      交流群
+      <NA
         href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Pp872M4iwavRQJFXyL9IXcire8EiHaAw&authKey=jYi4Z9RSWHPSU%2BE9nuzR9NtjXHgZgDIVdrvly%2BHUKTBjtgb9SyGkJsqs8PgWobTM&noverify=0&group_code=538122849"
         >538122849</NA
       >，欢迎加入 Nya~
