@@ -101,7 +101,9 @@ const menuOptionsMobile = [
     <NLayoutContent>
       <NSpace justify="center">
         <p>
-          这个版本的旧站点马上就要倒闭了。<a href="https://benben.imken.moe/">点我</a>前往新站！
+          这个版本的旧站点马上就要倒闭了。<a href="https://benben.imken.moe/"
+            >点我</a
+          >前往新站！
         </p>
         <RouterView></RouterView>
       </NSpace>
